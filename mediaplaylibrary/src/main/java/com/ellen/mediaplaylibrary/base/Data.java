@@ -17,10 +17,12 @@ public class Data<T> {
     private AddMusicData<T> addMusicData;
 
     AddMusicData<T> getAddMusic() {
-        return addMusicData;
+        AddMusicData<T> current = addMusicData;
+        addMusicData = null;
+        return current;
     }
 
-    void setAddMusic(T addMusic,int positon) {
+    void setAddMusic(T addMusic,int position) {
         if(addMusicData == null){
             addMusicData = new AddMusicData<>();
         }
