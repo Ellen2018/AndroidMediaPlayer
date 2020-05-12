@@ -53,7 +53,7 @@ public interface MediaPlyerInterface<T>{
      * 播放列表指定位置的歌曲
      * @param position
      */
-    void open(int position);
+    void openCurrentPosition(int position);
 
     /**
      * 获取音乐播放地址
