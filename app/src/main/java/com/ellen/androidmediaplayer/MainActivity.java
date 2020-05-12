@@ -1,11 +1,9 @@
 package com.ellen.androidmediaplayer;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -13,11 +11,10 @@ import android.widget.TextView;
 import com.ellen.androidmediaplayer.base.BaseActivity;
 import com.ellen.androidmediaplayer.base.adapter.recyclerview.BaseRecyclerViewAdapter;
 import com.ellen.androidmediaplayer.base.adapter.recyclerview.BaseViewHolder;
-import com.ellen.mediaplaylibrary.EllenMediaPlayer;
-import com.ellen.mediaplaylibrary.PlayStatus;
-import com.ellen.mediaplaylibrary.playmode.BasePlayMode;
-import com.ellen.mediaplaylibrary.playmode.SuiJiPlayMode;
-import com.ellen.mediaplaylibrary.playmode.XunHuanPlayMode;
+import com.ellen.mediaplaylibrary.base.BaseMediaPlayer;
+import com.ellen.mediaplaylibrary.base.PlayStatus;
+import com.ellen.mediaplaylibrary.base.playmode.BasePlayMode;
+import com.ellen.mediaplaylibrary.base.playmode.SuiJiPlayMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +53,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         List<BasePlayMode> basePlayModes = new ArrayList<>();
         basePlayModes.add(new SuiJiPlayMode());
         myMediaPlayer = new MyMediaPlayer(basePlayModes,0);
-        myMediaPlayer.addPlayedListener(new EllenMediaPlayer.MediaPlayerListener<Music>() {
+        myMediaPlayer.addPlayedListener(new BaseMediaPlayer.MediaPlayerListener<Music>() {
             @Override
             public void playedMusic(PlayStatus<Music> playStatus) {
                 if(!playStatus.isPlayerNull()) {

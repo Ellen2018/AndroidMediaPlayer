@@ -1,4 +1,4 @@
-package com.ellen.mediaplaylibrary.playmode;
+package com.ellen.mediaplaylibrary.base.playmode;
 
 /**
  * 播放模式的接口

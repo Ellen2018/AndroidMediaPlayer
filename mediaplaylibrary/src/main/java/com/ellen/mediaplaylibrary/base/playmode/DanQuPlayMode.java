@@ -1,17 +1,13 @@
-package com.ellen.mediaplaylibrary.playmode;
+package com.ellen.mediaplaylibrary.base.playmode;
 
-public class XunHuanPlayMode extends BasePlayMode {
+public class DanQuPlayMode extends BasePlayMode {
 
-    public XunHuanPlayMode() {
-        super(1);
+    public DanQuPlayMode() {
+        super(3);
     }
 
     @Override
     public int getNextPosition(int position, int size) {
-        position = position + 1;
-        if(position == size){
-            position = 0;
-        }
         return position;
     }
 
@@ -41,5 +37,4 @@ public class XunHuanPlayMode extends BasePlayMode {
         }
         return position;
     }
-
 }

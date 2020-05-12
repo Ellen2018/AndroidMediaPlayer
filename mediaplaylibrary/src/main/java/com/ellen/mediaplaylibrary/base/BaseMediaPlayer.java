@@ -1,20 +1,20 @@
-package com.ellen.mediaplaylibrary;
+package com.ellen.mediaplaylibrary.base;
 
 import android.media.MediaPlayer;
 
-import com.ellen.mediaplaylibrary.playmode.BasePlayMode;
+import com.ellen.mediaplaylibrary.base.playmode.BasePlayMode;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class EllenMediaPlayer<T> implements MediaPlyerInterface<T> {
+public abstract class BaseMediaPlayer<T> implements MediaPlyerInterface<T> {
 
     private Data<T> data;
     private MediaPlayer mediaPlayer;
     private List<MediaPlayerListener<T>> mediaPlayerListenerList;
 
-    public EllenMediaPlayer(List<BasePlayMode> basePlayModeList, int position) {
+    public BaseMediaPlayer(List<BasePlayMode> basePlayModeList, int position) {
         //播放模式
         data = new Data<>();
         data.setBasePlayModeList(basePlayModeList);

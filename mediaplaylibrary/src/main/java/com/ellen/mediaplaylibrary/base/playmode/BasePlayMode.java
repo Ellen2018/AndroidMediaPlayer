@@ -1,4 +1,4 @@
-package com.ellen.mediaplaylibrary.playmode;
+package com.ellen.mediaplaylibrary.base.playmode;
 
 public abstract class BasePlayMode implements PlayModeInterface{
 

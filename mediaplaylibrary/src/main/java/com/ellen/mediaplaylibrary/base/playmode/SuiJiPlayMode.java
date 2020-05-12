@@ -1,4 +1,4 @@
-package com.ellen.mediaplaylibrary.playmode;
+package com.ellen.mediaplaylibrary.base.playmode;
 
 public class SuiJiPlayMode extends BasePlayMode {
 

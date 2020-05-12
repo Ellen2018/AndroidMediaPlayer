@@ -1,6 +1,6 @@
-package com.ellen.mediaplaylibrary;
+package com.ellen.mediaplaylibrary.base;
 
-import com.ellen.mediaplaylibrary.playmode.BasePlayMode;
+import com.ellen.mediaplaylibrary.base.playmode.BasePlayMode;
 
 import java.util.List;
 

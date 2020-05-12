@@ -1,6 +1,5 @@
-package com.ellen.mediaplaylibrary;
+package com.ellen.mediaplaylibrary.base;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface MediaPlyerInterface<T>{
@@ -67,13 +66,13 @@ public interface MediaPlyerInterface<T>{
      * 添加播放监听事件
      * @param playedListener
      */
-    void addPlayedListener(EllenMediaPlayer.MediaPlayerListener<T> playedListener);
+    void addPlayedListener(BaseMediaPlayer.MediaPlayerListener<T> playedListener);
 
     /**
      * 移除播放监听事件
      * @param playedListener
      */
-    void removePlayedListener(EllenMediaPlayer.MediaPlayerListener<T> playedListener);
+    void removePlayedListener(BaseMediaPlayer.MediaPlayerListener<T> playedListener);
 
     /**
      * 清空播放列表
@@ -85,5 +84,9 @@ public interface MediaPlyerInterface<T>{
      */
     void adjustPlayMode();
 
+    /**
+     * 获取到当前播放器的状态
+     * @return
+     */
     PlayStatus<T> getPlayStatus();
 }

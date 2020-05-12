@@ -1,13 +1,29 @@
-package com.ellen.mediaplaylibrary;
+package com.ellen.mediaplaylibrary.base;
 
 import java.util.List;
 
 public class PlayStatus<T> {
 
+    /**
+     * 是否播放
+     */
     private boolean isPlaying = false;
+    /**
+     * 播放列表
+     */
     private List<T> playList = null;
+    /**
+     * 播放位置
+     */
     private int position = -1;
-    private int duration = 0,currentDuration = 0;
+    /**
+     * 播放总时间(单位:毫秒)
+     */
+    private int duration = 0;
+    /**
+     * 当前曲目播放的时间(单位:毫秒)
+     */
+    private int currentDuration = 0;
 
     public boolean isPlaying() {
         return isPlaying;
