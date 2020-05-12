@@ -4,15 +4,6 @@ import com.ellen.mediaplaylibrary.base.playmode.BasePlayMode;
 
 import java.util.List;
 
-/**
- * 播放器的所有数据
- * 0.播放模式集合
- * 1.播放模式
- * 2.播放列表
- * 3.播放历史
- * 4.播放位置
- * 5.是否为播放历史播放模式
- */
 public class Data<T> {
 
     private List<BasePlayMode> basePlayModeList;
