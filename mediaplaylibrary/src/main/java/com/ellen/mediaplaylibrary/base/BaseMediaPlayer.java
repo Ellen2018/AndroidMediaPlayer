@@ -82,14 +82,18 @@ public abstract class BaseMediaPlayer<T> implements MediaPlyerInterface<T> {
             }
             return;
         }
+        //检查有没有添加下一曲
+        if(data.getAddMusic() != null){
+           data.getRecordList().add(data.getRecordPosition() + 1,data.getAddMusic().getPosition());
+        }
         int record = data.getRecordPosition();
         record++;
-        if(record > data.getRecordList().size() -1){
+        if (record > data.getRecordList().size() - 1) {
             data.setPosition(data.getPlayMode().getNextPosition(data.getPosition(), data.getPlayList().size()));
             data.setRecordPosition(record);
             data.getRecordList().add(data.getPosition());
             open(data.getRecordList().get(data.getRecordPosition()));
-        }else {
+        } else {
             data.setRecordPosition(record);
             open(data.getRecordList().get(data.getRecordPosition()));
         }
@@ -105,14 +109,18 @@ public abstract class BaseMediaPlayer<T> implements MediaPlyerInterface<T> {
             }
             return;
         }
+        //检查有没有添加下一曲
+        if(data.getAddMusic() != null){
+            data.getRecordList().add(data.getRecordPosition() + 1,data.getAddMusic().getPosition());
+        }
         int record = data.getRecordPosition();
         record++;
-        if(record > data.getRecordList().size() -1){
+        if (record > data.getRecordList().size() - 1) {
             data.setPosition(data.getPlayMode().getNextFromUserPosition(data.getPosition(), data.getPlayList().size()));
             data.setRecordPosition(record);
             data.getRecordList().add(data.getPosition());
             open(data.getRecordList().get(data.getRecordPosition()));
-        }else {
+        } else {
             data.setRecordPosition(record);
             open(data.getRecordList().get(data.getRecordPosition()));
         }
@@ -130,12 +138,12 @@ public abstract class BaseMediaPlayer<T> implements MediaPlyerInterface<T> {
         }
         int record = data.getRecordPosition();
         record--;
-        if(record < 0){
+        if (record < 0) {
             data.setPosition(data.getPlayMode().getPrePosition(data.getPosition(), data.getPlayList().size()));
             data.setRecordPosition(0);
-            data.getRecordList().add(0,data.getPosition());
+            data.getRecordList().add(0, data.getPosition());
             open(data.getRecordList().get(data.getRecordPosition()));
-        }else {
+        } else {
             data.setRecordPosition(record);
             open(data.getRecordList().get(data.getRecordPosition()));
         }
@@ -153,14 +161,60 @@ public abstract class BaseMediaPlayer<T> implements MediaPlyerInterface<T> {
         }
         int record = data.getRecordPosition();
         record--;
-        if(record < 0){
+        if (record < 0) {
             data.setPosition(data.getPlayMode().getPreFromUserPosition(data.getPosition(), data.getPlayList().size()));
             data.setRecordPosition(0);
-            data.getRecordList().add(0,data.getPosition());
+            data.getRecordList().add(0, data.getPosition());
             open(data.getRecordList().get(data.getRecordPosition()));
-        }else {
+        } else {
             data.setRecordPosition(record);
             open(data.getRecordList().get(data.getRecordPosition()));
+        }
+    }
+
+    @Override
+    public void addMusicToNext(T t) {
+        if (data.checkPlayStatus()) {
+            boolean isSame = false;
+            for (T t1 : data.getPlayList()) {
+                if (t1.equals(t)) {
+                    isSame = true;
+                    break;
+                }
+            }
+            if (!isSame) {
+                data.getPlayList().add(data.getPosition() + 1, t);
+                data.setAddMusic(t,data.getPosition() + 1);
+            }
+        } else {
+            List<T> tList = new ArrayList<>();
+            tList.add(t);
+            openNewList(0, tList);
+        }
+    }
+
+    @Override
+    public void addMusicListToNext(List<T> tList) {
+        if (data.checkPlayStatus()) {
+            List<T> newList = new ArrayList<>();
+            for (T t : tList) {
+                boolean isSame = false;
+                for (T t1 : data.getPlayList()) {
+                    if (t.equals(t1)) {
+                        isSame = true;
+                        break;
+                    }
+                }
+                if(!isSame){
+                    newList.add(t);
+                }
+            }
+            if(newList.size() > 0){
+                data.setAddMusic(newList.get(0),data.getPosition() + 1);
+                data.getPlayList().addAll(data.getPosition() + 1,newList);
+            }
+        } else {
+            openNewList(0, tList);
         }
     }
 
@@ -291,17 +345,17 @@ public abstract class BaseMediaPlayer<T> implements MediaPlyerInterface<T> {
     @Override
     public PlayStatus<T> getPlayStatus() {
         PlayStatus<T> playStatus = new PlayStatus<>();
-        if(data.checkPlayStatus()){
-            if(mediaPlayer != null && mediaPlayer.isPlaying()){
+        if (data.checkPlayStatus()) {
+            if (mediaPlayer != null && mediaPlayer.isPlaying()) {
                 playStatus.setPlaying(true);
-            }else {
+            } else {
                 playStatus.setPlaying(false);
             }
             playStatus.setPlayList(data.getPlayList());
             playStatus.setPosition(data.getPosition());
             playStatus.setCurrentDuration(mediaPlayer.getCurrentPosition());
             playStatus.setDuration(mediaPlayer.getDuration());
-        }else {
+        } else {
             playStatus.setPlaying(false);
             playStatus.setPosition(-1);
             playStatus.setPlayList(null);

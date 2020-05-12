@@ -63,6 +63,18 @@ public interface MediaPlyerInterface<T>{
     String getPath(T t);
 
     /**
+     * 下一曲播放(单曲)
+     * @param t
+     */
+    void addMusicToNext(T t);
+
+    /**
+     * 下一曲播放(集合)
+     * @param tList
+     */
+    void addMusicListToNext(List<T> tList);
+
+    /**
      * 添加播放监听事件
      * @param playedListener
      */

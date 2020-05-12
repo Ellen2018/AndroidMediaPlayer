@@ -11,6 +11,22 @@ public class Data<T> {
     private List<T> playList;
     private int position = -1;
     private RecordData<T> recordData;
+    /**
+     * 记录下一曲播放的歌曲
+     */
+    private AddMusicData<T> addMusicData;
+
+    AddMusicData<T> getAddMusic() {
+        return addMusicData;
+    }
+
+    void setAddMusic(T addMusic,int positon) {
+        if(addMusicData == null){
+            addMusicData = new AddMusicData<>();
+        }
+       addMusicData.setT(addMusic);
+       addMusicData.setPosition(position);
+    }
 
     Data(){
         recordData = new RecordData<>();
@@ -75,5 +91,13 @@ public class Data<T> {
 
     void setRecordPosition(int recordPosition) {
         recordData.setRecordPosition(recordPosition);
+    }
+
+    public RecordData<T> getRecordData() {
+        return recordData;
+    }
+
+    public void setRecordData(RecordData<T> recordData) {
+        this.recordData = recordData;
     }
 }
