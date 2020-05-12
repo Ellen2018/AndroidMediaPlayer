@@ -83,8 +83,9 @@ public abstract class BaseMediaPlayer<T> implements MediaPlyerInterface<T> {
             return;
         }
         //检查有没有添加下一曲
-        if(data.getAddMusic() != null){
-           data.getRecordList().add(data.getRecordPosition() + 1,data.getAddMusic().getPosition());
+        AddMusicData<T> addMusicData = data.getAddMusic();
+        if(addMusicData != null){
+           data.getRecordList().add(data.getRecordPosition() + 1,addMusicData.getPosition());
         }
         int record = data.getRecordPosition();
         record++;
@@ -110,8 +111,9 @@ public abstract class BaseMediaPlayer<T> implements MediaPlyerInterface<T> {
             return;
         }
         //检查有没有添加下一曲
-        if(data.getAddMusic() != null){
-            data.getRecordList().add(data.getRecordPosition() + 1,data.getAddMusic().getPosition());
+        AddMusicData<T> addMusicData = data.getAddMusic();
+        if(addMusicData != null){
+            data.getRecordList().add(data.getRecordPosition() + 1,addMusicData.getPosition());
         }
         int record = data.getRecordPosition();
         record++;
